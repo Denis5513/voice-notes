@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Главная страница</title>
-</head>
-<body>
-    <h1>Добро пожаловать на наш сайт!</h1>
+{% extends '_base.html' %}
+{% block title %}Home{% endblock title %}
 
-    {% if user.is_authenticated %}
-        <p>Привет, {{ user.username }}!</p>
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Выйти</button>
-        </form>
-    {% else %}
-        <p>Вы не авторизованы.</p>
-        <a href="{% url 'login' %}">Вход</a> или 
-        <a href="{% url 'register' %}">Регистрация</a>
-    {% endif %}
-</body>
-</html>
+{% block content %}
+<section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">Главная страница</h1>
+    </div>
+  </section>
+{% endblock content %}

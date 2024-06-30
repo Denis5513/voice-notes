@@ -2,6 +2,8 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 
+from core.models import Record
+
 class Tag(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
@@ -28,7 +30,12 @@ class Note(models.Model):
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField()
-    audio_file = models.FilePathField(path='media', recursive=True)
+    record = models.OneToOneField(
+        Record,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
 
     PRIORITY_CHOICES = [
         (0, '0 - Highest!!!'),

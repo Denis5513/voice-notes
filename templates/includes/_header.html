@@ -1,0 +1,53 @@
+{% load static %}
+<!--url cache-->
+{% url 'core:record' as record_url %}
+<!--url cache-->
+{% url 'core:index' as home_url %}
+<!--url cache-->
+{% url 'login' as login_url %}
+{% url 'logout' as logout_url %}
+{% url 'signup' as signup_url %}
+
+<section class="hero is-info is-small">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <span class="navbar-burger" data-target="navbarMenuHeroA">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="{% url 'home' %}">Главная</a>
+            <a class="navbar-item {% if request.path == home_url %} is-active {% endif %}" href="{% url 'core:index' %}">
+              My records
+            </a>
+            {% if user.is_authenticated %}
+              <span class="navbar-item">
+                Вы вошли как {{ user.username }}
+              </span>
+              <a class="navbar-item" href="#" id="logout-link">Выйти</a>
+              <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+                {% csrf_token %}
+              </form>
+            {% else %}
+              <a class="navbar-item" href="{% url 'login' %}">Войти</a>
+              <a class="navbar-item" href="{% url 'register' %}">Зарегистрироваться</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<script>
+  document.getElementById('logout-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('logout-form').submit();
+  });
+</script>

@@ -18,7 +18,7 @@ admin.site.register(UserTag, UserTagAdmin)
 
 # Регистрация модели Note
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'created_at', 'deadline', 'priority', 'audio_file')
+    list_display = ('name', 'description', 'created_at', 'deadline', 'priority', 'record')
     search_fields = ('name',)
     list_filter = ('priority', 'created_at', 'deadline')
 
