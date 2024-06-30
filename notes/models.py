@@ -41,7 +41,7 @@ class Note(models.Model):
 
     priority = models.IntegerField(
         choices=PRIORITY_CHOICES,
-        default=4,
+        default=5,
         validators=[MinValueValidator(0), MaxValueValidator(5)],
         help_text="Priority scale from 0 (highest) to 5 (lowest). Default is 5 (diploma?)."
     )

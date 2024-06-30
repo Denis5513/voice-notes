@@ -9,16 +9,8 @@ from django.urls import reverse
 def record(request):
     if request.method == "POST":
         audio_file = request.FILES.get("recorded_audio")
-        language = request.POST.get("language")
-        deadline = request.POST.get("deadline")
-        tags = request.POST.get("tags")
-        importance = request.POST.get("importance")
         record = Record.objects.create(
-            language=language,
             voice_record=audio_file,
-            deadline=deadline,
-            tags=tags,
-            importance=importance
         )
         record.save()
         messages.success(request, "Audio recording successfully added!")

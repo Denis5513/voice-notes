@@ -92,19 +92,10 @@ $("#submit").on("click", function (event) {
   // Create a new File with the recordedData and its name
   const recordedFile = new File([player.recordedData], `audiorecord.webm`);
   // Grab the values of the form fields
-  const language = document.getElementById("language").value;
-  const deadline = document.getElementById("deadline").value;
-  const tags = document.getElementById("tags").value;
-  const importance = document.getElementById("importance").value;
   // Initialize an empty FormData
   let data = new FormData();
   // Append the recorded file and form field values
   data.append("recorded_audio", recordedFile);
-  data.append("language", language);
-  data.append("deadline", deadline);
-  data.append("tags", tags);
-  data.append("importance", importance);
-  // Post URL endpoint
   const url = "";
   $.ajax({
     url: url,
