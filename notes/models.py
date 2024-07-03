@@ -14,6 +14,7 @@ class Tag(models.Model):
 class UserTag(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
 
     user = models.ForeignKey(
         User,
@@ -30,6 +31,7 @@ class Note(models.Model):
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField()
+    is_active = models.BooleanField(default=True, blank=True)
     record = models.OneToOneField(
         Record,
         on_delete=models.CASCADE,

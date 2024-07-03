@@ -9,6 +9,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("core/", include("core.urls", namespace="core")),
     path("", views.home, name='home'),
+    path('authorization_message', views.authorization_required, name='authorization_message'),
     path('users/', include('users.urls')),
     path('notes/', include('notes.urls')),
 ]

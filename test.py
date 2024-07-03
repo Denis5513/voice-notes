@@ -1,8 +1,2 @@
-import matplotlib.pyplot as plt
-import numpy as np
-
-x = np.arange(0, 10, 0.1)
-y = np.sin(x)
-
-plt.plot(x, y)
-plt.show()
+l = {'user': 1, 'a': 6, '123': 123}
+print(l.pop('user', None))

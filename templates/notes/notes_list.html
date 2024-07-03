@@ -1,0 +1,40 @@
+{% extends '_base.html' %}
+
+{% block title %}Мои записи{% endblock title %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Мои записи</h1>
+      {% include 'notes/sorting_form.html' %}
+      <!-- Вывод заметок -->
+      {% for note in notes %}
+        <div class="box">
+          <h2 class="subtitle">{{ note.name }}</h2>
+          <p><strong>Описание:</strong> {{ note.description }}</p>
+          <p><strong>Дата создания:</strong> {{ note.created_at }}</p>
+          <p><strong>Дедлайн:</strong> {{ note.deadline }}</p>
+          <p><strong>Приоритет:</strong> {{ note.get_priority_display }}</p>
+          {% if note.record %}
+            <div class="level-item has-text-centered">
+              <div>
+                <audio src="{{ note.record.voice_record.url }}" controls></audio>
+              </div>
+            </div>
+          {% endif %}
+          <p><strong>Теги:</strong>
+            {% for tag in note.tags.all %}
+              {{ tag.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            {% for user_tag in note.user_tags.all %}
+              {{ user_tag.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            <div class="has-text-right">
+              <a href="{% url 'note_detail' note.id %}" >изменить запись</a>
+            </div>
+          </p>
+        </div>
+      {% endfor %}
+  </div>
+</section>
+{% endblock content %}

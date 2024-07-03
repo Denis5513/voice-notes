@@ -1,5 +1,5 @@
 from django import forms
-from .models import Note
+from .models import Note, Tag, UserTag
 
 class NoteForm(forms.ModelForm):
     class Meta:
@@ -18,3 +18,17 @@ class NoteForm(forms.ModelForm):
             'tags': forms.CheckboxSelectMultiple,
             'user_tags': forms.CheckboxSelectMultiple,
         }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(NoteForm, self).__init__(*args, **kwargs)
+        if user is not None:
+            self.fields['user_tags'].queryset = UserTag.objects.filter(user=user)
+
+class UserTagForm(forms.ModelForm):
+    class Meta:
+        model = UserTag
+        fields = [
+            'name',
+            'description',
+        ]

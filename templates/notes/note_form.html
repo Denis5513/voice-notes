@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Note</title>
-</head>
-<body>
-    <h1>Create Note</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Note</button>
-    </form>
-</body>
-</html>
+{% extends '_base.html' %}
+
+{% block title %}Создать новую запись{% endblock title %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Создать запись</h1>
+      <div class="box">
+        <form method="POST">
+          {% csrf_token %}
+          {% include 'notes/note_fields.html' %}
+            <div class="field is-grouped">
+              <div class="control">
+                <button type="submit" name="record_audio" class="button is-primary">Записать аудио</button>
+              </div>
+              <div class="control">
+                <a href="{% url 'notes_list' %}" class="button is-light">Отмена</a>
+              </div>
+            </div>
+        </form>
+      </div>
+  </div>
+</section>
+{% endblock content %}

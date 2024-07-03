@@ -12,7 +12,7 @@ def register(request):
             return redirect('home')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -24,4 +24,4 @@ def login_view(request):
                 return redirect('home')
     else:
         form = CustomAuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'users/login.html', {'form': form})

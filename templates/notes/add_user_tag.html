@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% block title %}Добавить новый тег{% endblock title %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Добавить новый тег</h1>
+
+    <div class="box">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="field">
+          <label class="label">Название тега</label>
+          <div class="control">
+            {{ form.name }}
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button type="submit" class="button is-link">Сохранить</button>
+          </div>
+          <div class="control">
+            <a href="{{ request.GET.next }}" class="button is-light">Отмена</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

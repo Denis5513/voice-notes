@@ -1,0 +1,38 @@
+<div class="field">
+  <label class="label">Название</label>
+  <div class="control">
+    {{ form.name }}
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Описание</label>
+  <div class="control">
+    {{ form.description }}
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Дедлайн</label>
+  <div class="control">
+    {{ form.deadline }}
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Приоритет</label>
+  <div class="control">
+    {{ form.priority }}
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Теги</label>
+  <div class="control">
+    {{ form.tags }}
+  </div>
+  <div class="control">
+    {{ form.user_tags }}
+  </div>
+  <p><a href="{% url 'add_user_tag' %}?next={{ request.path }}">Добавить новый тег</a></p>
+</div>

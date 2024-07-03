@@ -19,7 +19,7 @@ def record(request, note_id):
         return JsonResponse(
             {
                 "success": True,
-                "url": reverse('home')
+                "url": reverse('notes_list')
             }
         )
     context = {"page_title": "Record audio"}

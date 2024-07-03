@@ -23,8 +23,11 @@
         <div id="navbarMenuHeroA" class="navbar-menu">
           <div class="navbar-end">
             <a class="navbar-item" href="{% url 'home' %}">Главная</a>
-            <a class="navbar-item {% if request.path == home_url %} is-active {% endif %}" href="{% url 'core:index' %}">
-              My records
+            <a class="navbar-item {% if request.path == home_url %} is-active {% endif %}" href="{% url 'notes_list' %}">
+              Мои записи
+            </a>
+            <a class="navbar-item {% if request.path == home_url %} is-active {% endif %}" href="{% url 'create_note' %}">
+              Создать новую запись
             </a>
             {% if user.is_authenticated %}
               <span class="navbar-item">

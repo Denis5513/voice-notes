@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+
+{% block title %}Редактировать запись{% endblock title %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Редактировать запись</h1>
+
+    <div class="box">
+      <form method="POST">
+        {% csrf_token %}
+        {% include 'notes/note_fields.html' %}
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button type="submit" class="button is-link">Сохранить</button>
+          </div>
+          <div class="control">
+            <button type="submit" name="record_audio" class="button is-primary">Перезаписать аудио</button>
+          </div>
+          <div class="control">
+            <button type="submit" name="delete_note" class="button is-danger">Удалить запись</button>
+          </div>
+          <div class="control">
+            <a href="{% url 'notes_list' %}" class="button is-light">Отмена</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

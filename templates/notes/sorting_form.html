@@ -1,0 +1,40 @@
+<!-- Форма для сортировки и фильтрации -->
+<form method="get" class="mb-4">
+    <div class="field">
+        <div class="control">
+        <button type="submit" name="sort_by_deadline" value="true" class="button is-link">
+            Сортировать по дедлайну
+        </button>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Теги:</label>
+        <div class="control">
+        {% for tag in tags %}
+            <label class="checkbox">
+            <input type="checkbox" name="tags" value="{{ tag.id }}" 
+                    {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
+            {{ tag.name }}
+            </label>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+        {% for user_tag in user_tags %}
+            <label class="checkbox">
+            <input type="checkbox" name="user_tags" value="{{ user_tag.id }}" 
+                    {% if user_tag.id|stringformat:"s" in selected_user_tags %}checked{% endif %}>
+            {{ user_tag.name }}
+            </label>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+        <button type="submit" class="button is-link">
+            Применить фильтры
+        </button>
+        </div>
+    </div>
+</form>
